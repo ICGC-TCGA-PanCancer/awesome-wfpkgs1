@@ -1,6 +1,6 @@
 {
     "name": "fastqc",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "FastQC tool",
     "main": "fastqc",
     "scripts": {
@@ -8,11 +8,13 @@
     },
     "deprecated": false,
     "keywords": [
-        "bioinformatics"
+        "bioinformatics",
+        "seq",
+        "qc metrics"
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/ICGC-TCGA-PanCancer/awesome-wfpkgs1.git"
+        "url": "https://github.com/icgc-tcga-pancancer/awesome-wfpkgs1.git"
     },
     "container": {
         "registries": [
@@ -29,10 +31,10 @@
     "contributors": [
         {
             "name": "Junjun Zhang",
-            "email": "junjun.zhang@oicr.on.ca"
+            "email": "junjun.ca@gmail.com"
         }
     ],
     "license": "MIT",
-    "bugReport": "https://github.com/ICGC-TCGA-PanCancer/awesome-wfpkgs1/issues",
-    "homepage": "https://github.com/ICGC-TCGA-PanCancer/awesome-wfpkgs1#readme"
+    "bugReport": "https://github.com/icgc-tcga-pancancer/awesome-wfpkgs1/issues",
+    "homepage": "https://github.com/icgc-tcga-pancancer/awesome-wfpkgs1#readme"
 }

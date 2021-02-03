@@ -1,15 +1,21 @@
 #!/usr/bin/env nextflow
 
-/*
- This is an auto-generated checker workflow, please update as needed
-*/
-
+/********************************************************************/
+/* this block is auto-generated based on info from pkg.json where   */
+/* changes can be made if needed, do NOT modify this block manually */
 nextflow.enable.dsl = 2
-version = '0.1.0'  // tool version
+version = '0.2.0'  // tool version
+
+container = [
+    'ghcr.io': 'ghcr.io/icgc-tcga-pancancer/awesome-wfpkgs1.fastqc'
+]
+default_container_registry = 'ghcr.io'
+/********************************************************************/
 
 // universal params
-params.publish_dir = ""
+params.container_registry = default_container_registry
 params.container_version = ""
+
 
 // tool specific parmas go here, add / change as needed
 params.input_file = ""
@@ -23,7 +29,7 @@ Channel
 
 
 process file_diff {
-  container "ghcr.io/icgc-tcga-pancancer/awesome-wfpkgs1.fastqc:${params.container_version ?: version}"
+  container "${container[params.container_registry]}:${params.container_version ?: version}"
 
   input:
     path output_file
@@ -55,7 +61,7 @@ workflow checker {
     )
 
     file_diff(
-      fastqc.out.output,
+      fastqc.out.output_file,
       expected_output
     )
 }
