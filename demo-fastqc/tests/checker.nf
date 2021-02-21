@@ -13,15 +13,16 @@ default_container_registry = 'ghcr.io'
 /********************************************************************/
 
 // universal params
-params.container_registry = default_container_registry
+params.container_registry = ""
 params.container_version = ""
+params.container = ""
 
 
 // tool specific parmas go here, add / change as needed
 params.input_file = ""
 params.expected_output = ""
 
-include { demoFastqc } from '../demo-fastqc'
+include { demoFastqc } from '../demo-fastqc' params(['cleanup': false, *:params])
 
 Channel
   .fromPath(params.input_file, checkIfExists: true)
@@ -29,7 +30,7 @@ Channel
 
 
 process file_smart_diff {
-  container "${container[params.container_registry]}:${params.container_version ?: version}"
+  container "${params.container ?: container[params.container_registry ?: default_container_registry]}:${params.container_version ?: version}"
 
   input:
     path output_file

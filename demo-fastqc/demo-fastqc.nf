@@ -4,7 +4,7 @@
 /* this block is auto-generated based on info from pkg.json where   */
 /* changes can be made if needed, do NOT modify this block manually */
 nextflow.enable.dsl = 2
-version = '0.1.0'  // package version
+version = '0.2.0'
 
 container = [
     'ghcr.io': 'ghcr.io/icgc-tcga-pancancer/awesome-wfpkgs1.demo-fastqc'
@@ -14,7 +14,7 @@ default_container_registry = 'ghcr.io'
 
 
 // universal params go here
-params.container_registry = default_container_registry
+params.container_registry = ""
 params.container_version = ""
 
 params.cpus = 1
@@ -28,7 +28,7 @@ params.output_pattern = "*.html"  // fastqc output html report
 
 
 process demoFastqc {
-  container "${container[params.container_registry]}:${params.container_version ?: version}"
+  container "${params.container ?: container[params.container_registry ?: default_container_registry]}:${params.container_version ?: version}"
   publishDir "${params.publish_dir}/${task.process.replaceAll(':', '_')}", mode: "copy", enabled: "${params.publish_dir ? true : ''}"
 
   cpus params.cpus
